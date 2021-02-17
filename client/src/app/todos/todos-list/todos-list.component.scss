@@ -1,0 +1,17 @@
+.body{
+  white-space: nowrap;
+    width: 200px;
+    font-size: large;
+    padding-left: 16px;
+    text-overflow: ellipsis;
+}
+.mat-card-actions{
+  padding-left: 5px;
+}
+.todo-card p{
+  margin-left: 0px;
+  font-size: x-large;
+}
+.todo-card-status{
+  color: greenyellow;
+}

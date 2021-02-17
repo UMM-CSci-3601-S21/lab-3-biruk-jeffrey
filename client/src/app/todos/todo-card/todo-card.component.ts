@@ -11,7 +11,7 @@ export class TodoCardComponent implements OnInit {
 
   constructor() { }
 
-  @Input() todo : Todo;
+  @Input() todo: Todo;
 
   ngOnInit(): void {
   }

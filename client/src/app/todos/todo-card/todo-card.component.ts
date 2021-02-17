@@ -13,10 +13,6 @@ export class TodoCardComponent implements OnInit {
 
   constructor() { }
 
-<<<<<<< HEAD
-=======
-  @Input() todo: Todo;
->>>>>>> Epic#3
 
   ngOnInit(): void {
   }

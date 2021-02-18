@@ -1,3 +1,29 @@
-.todo-card{
+.todo-card {
   margin-bottom: 20px;
+}
+
+.body {
+  width: 250px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  margin-left: 16px;
+  font-size: larger;
+}
+.todo-card{
+  width: 280px;
+  margin: 10px;
+  transition-duration: 600ms;
+}
+.todo-card:hover{
+  background-color: rgba(0, 0, 0, 0.055);
+}
+.btn{
+  margin-left: 8px!important;
+}
+.completed{
+  color: greenyellow;
+}
+.incomplete{
+  color: white;
 }

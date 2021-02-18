@@ -1,5 +1,5 @@
 <div fxLayout="row">
-  <div fxFlex fxFlex.gt-sm="80" fxFlexOffset.gt-sm="10">
+  <div class="container" fxFlex fxFlex.gt-sm="90" fxFlexOffset.gt-sm="10">
 
     <mat-card class="search-card">
       <mat-card-title class="user-list-title">Todos</mat-card-title>
@@ -66,9 +66,11 @@
     </mat-card>
   </div>
 </div>
-
-<app-todo-card *ngFor="let number of [0,1,2,3,4]"></app-todo-card>
-
+<div fxFlex fxFlex.gt-sm="80" fxFlexOffset.gt-sm="10">
+  <div class="todoList">
+    <app-todo-card *ngFor="let todo of todos" [todo]="todo"></app-todo-card>
+  </div>
+</div>
 <div fxLayout="row">
   <div fxFlex fxFlex.gt-sm="80" fxFlexOffset.gt-sm="10">
     <!-- Switch between card and list view based on the viewType variable, set above in the mar-radio-group -->

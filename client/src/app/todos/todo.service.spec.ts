@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { Todo } from './todo';
@@ -36,8 +36,9 @@ describe('TodoService', () => {
     },
     ];
   beforeEach(() => {
-    TestBed.configureTestingModule({imports: [HttpClientTestingModule]});
-    service = TestBed.inject(TodoService);
+    TestBed.configureTestingModule({imports: [HttpClientTestingModule],
+      providers: [HttpClientModule]});
+    // service = TestBed.inject(TodoService);
     httpClient = TestBed.inject(HttpClient);
     httpTestingController = TestBed.inject(HttpTestingController);
     service = new TodoService(httpClient);

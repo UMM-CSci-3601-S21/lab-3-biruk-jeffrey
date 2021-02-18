@@ -1,3 +1,4 @@
+import { TodoService } from './todos/todo.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -76,7 +77,7 @@ const MATERIAL_MODULES: any[] = [
     LayoutModule,
   ],
   providers: [
-    UserService
+    UserService,TodoService,HttpClientModule
   ],
   bootstrap: [AppComponent]
 })

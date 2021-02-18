@@ -34,10 +34,10 @@ export class TodoService {
         httpParams = httpParams.set('status', String(filters.status));
       }
       if (filters.category) {
-        httpParams = httpParams.set('status', filters.category);
+        httpParams = httpParams.set('category', filters.category);
       }
       if (filters.body) {
-        httpParams = httpParams.set('status', filters.body);
+        httpParams = httpParams.set('body', filters.body);
       }
     }
     return this.httpClient.get<Todo[]>(this.todoUrl, {

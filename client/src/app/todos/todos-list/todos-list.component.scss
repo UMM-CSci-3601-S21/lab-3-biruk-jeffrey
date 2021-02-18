@@ -15,3 +15,14 @@
 .todo-card-status{
   color: greenyellow;
 }
+.todoList{
+  display: flex;
+  margin: auto;
+  flex-wrap: wrap;
+}
+.search-card{
+  position: fixed;
+}
+.container{
+  width: 300px;
+}

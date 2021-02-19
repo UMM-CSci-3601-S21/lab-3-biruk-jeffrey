@@ -9,16 +9,35 @@ import { Todo } from '../todo';
 })
 export class TodosListComponent implements OnInit {
 
-  todos: Todo[];
+  filteredTodos: Todo[];
+  serverTodos: Todo[];
+
+  owner: string;
+  body: string;
+  status: string;
+  category: string;
 
   constructor(private todoService: TodoService) { }
 
   ngOnInit(): void {
-    this.loadTodos();
+    this.getTodosFromServer();
   }
-  loadTodos(){
-    this.todoService.getTodos().subscribe(data=>{
-      this.todos = data;
+  getTodosFromServer() {
+    this.todoService.getTodos({}).subscribe(returnedTodos => {
+      this.serverTodos = returnedTodos;
+      this.update();
     });
+  }
+
+  public update() {
+    const obj = {
+      body: this.body,
+      owner: this.owner,
+      category: this.category,
+      status: this.status === 'complete'
+    };
+    console.log(obj);
+    this.filteredTodos = this.todoService.filterTodos(
+      this.serverTodos, obj);
   }
 }

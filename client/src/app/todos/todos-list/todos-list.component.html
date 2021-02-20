@@ -44,7 +44,7 @@
         <div fxLayout="row wrap" fxLayoutGap="10px">
           <mat-form-field class="input-field">
             <mat-label>Order by</mat-label>
-            <mat-select (input)="update()" >
+            <mat-select [(ngModel)]="sort" (selectionChange)="update()" >
               <mat-option>--</mat-option>
               <mat-option value="category">Category</mat-option>
               <mat-option value="status">Status</mat-option>
@@ -55,7 +55,7 @@
           </mat-form-field>
           <mat-form-field class="input-field">
             <mat-label>Limit</mat-label>
-            <input (input)="update()" matInput id="user-age-input" type="number" placeholder="Enter an amount here" min="0" max="200">
+            <input [(ngModel)]="limit" (input)="update()" matInput id="user-age-input" type="number" placeholder="Enter an amount here" min="0" max="200">
             <mat-hint>Limit by number</mat-hint>
           </mat-form-field>
         </div>

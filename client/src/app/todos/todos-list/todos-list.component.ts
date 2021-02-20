@@ -17,6 +17,8 @@ export class TodosListComponent implements OnInit {
   body: string;
   status: string;
   category: string;
+  limit: number;
+  sort: string;
 
   constructor(private todoService: TodoService) { }
 
@@ -37,7 +39,18 @@ export class TodosListComponent implements OnInit {
       category: this.category,
       status: this.status ? this.status === 'complete' : undefined
     };
-    console.log(obj);
+    console.log(obj + String(this.limit));
     this.filteredTodos = this.todoService.filterTodos(this.serverTodos, obj);
+
+    if (this.sort !== undefined) {
+      this.filteredTodos = this.filteredTodos.sort((first, second) => {
+        const sortBy = this.sort.toLowerCase();
+        const a = first[`${sortBy}`];
+        const b = second[`${sortBy}`];
+        return a === b ? 0 : (a > b ? 1 : -1);
+      });
+    }
+
+    if (this.limit) { this.filteredTodos = this.filteredTodos.slice(0, this.limit); }
   }
 }

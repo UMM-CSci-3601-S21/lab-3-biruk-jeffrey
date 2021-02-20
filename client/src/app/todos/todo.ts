@@ -1,5 +1,5 @@
-export class Todo{
-  id: string;
+export class Todo {
+  _id: string;
   owner: string;
   status: boolean;
   body: string;

@@ -7,11 +7,35 @@
   padding-left: 5px;
 }
 
-.todo-card p {
+.body {
   margin-left: 0px;
   font-size: x-large;
 }
 
 .todo-card-status {
-  color: greenyellow;
+  margin-bottom: 10px;
+
+}
+
+.completed {
+  color: limegreen;
+  margin-bottom: 10px;
+}
+.todo-card{
+  padding: 40px;
+}
+
+.incomplete {
+  color: red;
+}
+
+mat-card-header {
+  display: flex;
+  flex-direction: column;
+}
+
+.category {
+  padding-top: 10px;
+  padding-left: 16px;
+  font-size: small;
 }

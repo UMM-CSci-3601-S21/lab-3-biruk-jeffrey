@@ -1,6 +1,7 @@
 import { TodoService } from './../todo.service';
 import { Component, OnInit } from '@angular/core';
 import { Todo } from '../todo';
+import { Filter } from 'src/app/filter';
 
 @Component({
   selector: 'app-todos-list',
@@ -20,24 +21,23 @@ export class TodosListComponent implements OnInit {
   constructor(private todoService: TodoService) { }
 
   ngOnInit(): void {
-    this.getTodosFromServer();
+    this.getTodosFromServer({});
   }
-  getTodosFromServer() {
-    this.todoService.getTodos({}).subscribe(returnedTodos => {
+  getTodosFromServer(filters?) {
+    this.todoService.getTodos(filters).subscribe(returnedTodos => {
       this.serverTodos = returnedTodos;
       this.update();
     });
   }
 
   public update() {
-    const obj = {
+    const obj: Filter = {
       body: this.body,
       owner: this.owner,
       category: this.category,
-      status: this.status === 'complete'
+      status: this.status ? this.status === 'complete' : undefined
     };
     console.log(obj);
-    this.filteredTodos = this.todoService.filterTodos(
-      this.serverTodos, obj);
+    this.filteredTodos = this.todoService.filterTodos(this.serverTodos, obj);
   }
 }

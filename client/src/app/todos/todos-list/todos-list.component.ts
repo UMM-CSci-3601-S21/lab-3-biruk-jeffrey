@@ -32,22 +32,20 @@ export class TodosListComponent implements OnInit {
     });
   }
 
-  public update() {
-    const obj: Filter = {
+  public update(testingFilters? : Filter) {
+    const filter: Filter = !testingFilters ? {
       body: this.body,
       owner: this.owner,
       category: this.category,
       status: this.status ? this.status === 'complete' : undefined
-    };
-    console.log(obj + String(this.limit));
-    this.filteredTodos = this.todoService.filterTodos(this.serverTodos, obj);
+    } : testingFilters;
+    this.filteredTodos = this.todoService.filterTodos(this.serverTodos, filter);
 
     if (this.sort !== undefined) {
       this.filteredTodos = this.filteredTodos.sort((first, second) => {
-        const sortBy = this.sort.toLowerCase();
-        const a = first[`${sortBy}`];
-        const b = second[`${sortBy}`];
-        return a === b ? 0 : (a > b ? 1 : -1);
+        const a = first[this.sort];
+        const b = second[this.sort];
+        return a === b ? 0 : (a > b ? 1 : -1); // Return 1 if a>b, -1 if a<b and 0 otherwise
       });
     }
 

@@ -1,4 +1,4 @@
-import { Todo } from './todos/todo';
+import { Todo } from './todo';
 
 export class Filter {
   id?: string;

@@ -35,6 +35,8 @@ import { UserProfileComponent } from './users/user-profile.component';
 import { TodosListComponent } from './todos/todos-list/todos-list.component';
 import { TodoCardComponent } from './todos/todo-card/todo-card.component';
 import { TodoDetailComponent } from './todos/todo-detail/todo-detail.component';
+import { RouterModule } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 
 const MATERIAL_MODULES: any[] = [
   MatListModule,
@@ -75,6 +77,7 @@ const MATERIAL_MODULES: any[] = [
     HttpClientModule,
     MATERIAL_MODULES,
     LayoutModule,
+    RouterTestingModule, RouterModule.forRoot([])
   ],
   providers: [
     UserService,TodoService,HttpClientModule

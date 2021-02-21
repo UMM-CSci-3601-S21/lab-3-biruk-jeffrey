@@ -2,7 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
-import { Filter } from '../filter';
+import { Filter } from './filter';
 import { Todo } from './todo';
 
 
@@ -47,6 +47,6 @@ export class TodoService {
   }
 
   filterTodos(todos: Todo[], filters: Filter): Todo[] {
-    return todos.filter(Filter.passesFilter(filters));
+    return todos.filter(Filter.applyFilter(filters));
   }
 }

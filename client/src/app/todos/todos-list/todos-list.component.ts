@@ -26,11 +26,13 @@ export class TodosListComponent implements OnInit {
     this.getTodosFromServer();
   }
   getTodosFromServer(filters?, afterThat?: (data) => void) {
-    return this.todoService.getTodos(filters).subscribe(returnedTodos => {
+    const obs = this.todoService.getTodos(filters);
+    obs.subscribe(returnedTodos => {
       this.serverTodos = returnedTodos;
       this.update();
-      afterThat(returnedTodos);
+      if (afterThat) { afterThat(returnedTodos); }
     });
+    return obs.toPromise();
   }
 
   public update(testingFilters?: Filter) {

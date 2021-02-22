@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule,MatCardContent,MatCardTitle } from '@angular/material/card';
 import { MatOptionModule } from '@angular/material/core';
@@ -18,6 +18,8 @@ import { TodoCardComponent } from '../todo-card/todo-card.component';
 import { Filter } from 'src/app/todos/filter';
 import { RouterTestingModule } from '@angular/router/testing';
 import { RouterModule } from '@angular/router';
+import { MockTodoService } from 'src/testing/todo.service.mock';
+import { TodoService } from '../todo.service';
 
 
 describe('TodosListComponent', () => {
@@ -27,25 +29,23 @@ describe('TodosListComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [TodosListComponent, TodoCardComponent],
-      imports: [HttpClientTestingModule,RouterTestingModule,RouterModule.forRoot([]),]
+      imports: [HttpClientTestingModule,RouterTestingModule,RouterModule.forRoot([]),],
+      providers: [{ provide: TodoService, useValue: new MockTodoService() }]
     })
       .compileComponents();
   });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(TodosListComponent);
-    todoList = fixture.componentInstance;
-    fixture.detectChanges();
-    todoList.getTodosFromServer();
-  });
+  beforeEach(waitForAsync(() => {
+    TestBed.compileComponents().then(() => {
+      fixture = TestBed.createComponent(TodosListComponent);
+      todoList = fixture.componentInstance;
+      fixture.detectChanges();
+      todoList.getTodosFromServer();
+    });
+  }));
 
-  // todoList.getTodosFromServer([],/*Then....*/(data) => {
-  //   it('should create', () => {
-  //     expect(todoList).toBeTruthy();
-  //   });
-  // });
   it('fetches data from the server"', () => {
-    expect(todoList.serverTodos.length).toBe(300);
+    expect(todoList.serverTodos.length).toBe(5);
   });
   it('filters by owner', () => {
     const filter: Filter = { owner: 'Blanche' };
@@ -86,10 +86,4 @@ describe('TodosListComponent', () => {
       expect(todo.body).toBe(sampleBody);
     });
   });
-  // when clicking on view details, the id is passed for a todo that exists
-  // check specific number of people
-  // call some filters and check the number of returned items
-  // it('contains the right amount of todos', () => {
-  //   expect(todoList.getTodosFromServer((todo: Todo) => todo.owner === 'Blanche')).toBe(true);
-  // });
 });

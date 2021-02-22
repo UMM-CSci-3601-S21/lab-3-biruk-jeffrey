@@ -1,3 +1,4 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MatButtonModule } from '@angular/material/button';
@@ -12,6 +13,8 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { RouterModule } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 import { TodoDetailComponent } from './todo-detail.component';
 
 describe('TodoDetailComponent', () => {
@@ -20,7 +23,8 @@ describe('TodoDetailComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TodoDetailComponent ]
+      declarations: [ TodoDetailComponent ],
+      imports: [HttpClientTestingModule,RouterTestingModule,RouterModule.forRoot([]),]
     })
     .compileComponents();
   });

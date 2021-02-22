@@ -1,3 +1,4 @@
+import { TodoService } from './todos/todo.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -31,6 +32,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { LayoutModule } from '@angular/cdk/layout';
 import { UserCardComponent } from './users/user-card.component';
 import { UserProfileComponent } from './users/user-profile.component';
+import { TodosListComponent } from './todos/todos-list/todos-list.component';
+import { TodoCardComponent } from './todos/todo-card/todo-card.component';
+import { TodoDetailComponent } from './todos/todo-detail/todo-detail.component';
+import { RouterModule } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 
 const MATERIAL_MODULES: any[] = [
   MatListModule,
@@ -58,6 +64,9 @@ const MATERIAL_MODULES: any[] = [
     UserListComponent,
     UserCardComponent,
     UserProfileComponent,
+    TodosListComponent,
+    TodoCardComponent,
+    TodoDetailComponent,
   ],
   imports: [
     BrowserModule,
@@ -68,9 +77,10 @@ const MATERIAL_MODULES: any[] = [
     HttpClientModule,
     MATERIAL_MODULES,
     LayoutModule,
+    RouterTestingModule, RouterModule.forRoot([])
   ],
   providers: [
-    UserService
+    UserService,TodoService,HttpClientModule
   ],
   bootstrap: [AppComponent]
 })

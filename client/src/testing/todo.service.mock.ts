@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Filter } from 'src/app/todos/filter';
-import { Todo } from '../app/todos/Todo';
-import { TodoService } from '../app/Todos/Todo.service';
+import { Todo } from 'src/app/todos/todo';
+import { TodoService } from 'src/app/todos/todo.service';
 
 /**
  * A 'mock' version of the `TodoService` that can be used to test components

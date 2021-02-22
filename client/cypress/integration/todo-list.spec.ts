@@ -32,7 +32,7 @@ describe('Todo list', () => {
     cy.get('#todo-body-input').type('Ipsum');
 
     page.getTodoCards().each(e => {
-        cy.wrap(e).find('.body').should('contain.text', 'Ipsum');
+        cy.wrap(e).find('.body').contains('ipsum', { matchCase: false });
     });
 
   });

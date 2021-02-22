@@ -1,11 +1,11 @@
-<mat-card class="todo-card">
+<mat-card class="todo-card" *ngIf="todo">
   <mat-card-header>
-    <mat-card-title class="todo-card-name">Jeffrey</mat-card-title>
-    <mat-card-subtitle class="todo-card-status">Status: Completed</mat-card-subtitle>
-    <mat-card-subtitle class="category">Category: Homework</mat-card-subtitle>
+    <mat-card-title class="todo-card-name">{{todo.owner}}</mat-card-title>
+    <mat-card-subtitle [className]="todo.status ? 'completed' : 'incomplete'" class="todo-card-status">Status: {{todo.status == true ? 'Complete':'Incomplete'}}</mat-card-subtitle>
+    <p  class="category">Category: {{todo.category}}</p>
 
   </mat-card-header>
   <mat-card-content>
-    <p class="body">Ex culpa proident esse cupidatat sunt est sit. Reprehenderit Lorem quis nostrud amet commodo eiusmod id.</p>
+    <p class="body">Body: {{todo.body}}</p>
   </mat-card-content>
 </mat-card>

@@ -15,6 +15,7 @@ export class TodoCardComponent implements OnInit {
 
 
   ngOnInit(): void {
+    console.log(this.todo);
   }
 
 }

@@ -14,21 +14,21 @@ describe('TodoService', () => {
 
   const testTodos: Todo[] = [
     {
-      id: 'bryce_id',
+      _id: 'bryce_id',
       owner: 'Bryce',
       status: false,
       body: 'This is a body paragraph. #1',
       category: 'dance'
     },
     {
-      id: 'kelly_id',
+      _id: 'kelly_id',
       owner: 'Kelly',
       status: true,
       body: 'This is a body paragraph. #2',
       category: 'homework'
     },
     {
-      id: 'jamie_id',
+      _id: 'jamie_id',
       owner: 'Jamie',
       status: false,
       body: 'This is a body paragraph. #3',
@@ -51,7 +51,7 @@ describe('TodoService', () => {
   describe('getTodoByID()', () => {
     it('calls api/Todos/id with the correct ID', () => {
       const targetTodo: Todo = testTodos[1];
-      const targetId: string = targetTodo.id;
+      const targetId: string = targetTodo._id;
 
       service.getTodoById(targetId).subscribe(
         todo => expect(todo).toBe(targetTodo)

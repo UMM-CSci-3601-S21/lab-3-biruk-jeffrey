@@ -1,8 +1,8 @@
-<div fxLayout="row">
-  <div class="container" fxFlex fxFlex.gt-sm="90" fxFlexOffset.gt-sm="10">
+<div class="outer">
+  <div class="container">
 
     <mat-card class="search-card">
-      <mat-card-title class="user-list-title">Todos</mat-card-title>
+      <mat-card-title class="todo-list-title">Todos</mat-card-title>
       <mat-card-content fxLayout="column">
 
         <div fxLayout="row wrap" fxLayoutGap="10px">
@@ -10,14 +10,14 @@
 
           <mat-form-field class="input-field">
             <mat-label>Owner</mat-label>
-            <input matInput id="todo-owner-input" placeholder="Filter by name">
-            <mat-hint>Name of the owner</mat-hint>
+            <input (input)="getTodosFromServer()" matInput [(ngModel)]="owner" id="todo-owner-input" placeholder="Filter by name">
+            <mat-hint>Filtered on the server</mat-hint>
           </mat-form-field>
 
           <mat-form-field class="input-field">
             <mat-label>Category</mat-label>
-            <input matInput id="user-company-input" placeholder="Filter by category">
-            <mat-hint>Name of the category</mat-hint>
+            <input (input)="update()" [(ngModel)]="category" matInput id="todo-category-input" placeholder="Filter by category">
+            <mat-hint>Filtered on client</mat-hint>
           </mat-form-field>
         </div>
 
@@ -26,25 +26,25 @@
 
           <mat-form-field class="input-field">
             <mat-label>Body</mat-label>
-            <input matInput id="user-age-input" type="text" placeholder="Filter by body" min="0" max="200">
-            <mat-hint>Filtered on server</mat-hint>
+            <input (input)="update()" [(ngModel)]="body" matInput id="todo-body-input" type="text" placeholder="Filter by body" min="0" max="200">
+            <mat-hint>Filtered on client</mat-hint>
           </mat-form-field>
 
           <mat-form-field class="input-field">
             <mat-label>Status</mat-label>
-            <mat-select>
+            <mat-select (selectionChange)="update()" [(ngModel)]="status" id="todo-status-input" data-test="todoStatusSelect">
               <mat-option>--</mat-option>
               <mat-option value="complete">Complete</mat-option>
               <mat-option value="incomplete">Incomplete</mat-option>
             </mat-select>
-            <mat-hint>Filtered on server</mat-hint>
+            <mat-hint>Filtered on client</mat-hint>
           </mat-form-field>
         </div>
 
         <div fxLayout="row wrap" fxLayoutGap="10px">
           <mat-form-field class="input-field">
             <mat-label>Order by</mat-label>
-            <mat-select>
+            <mat-select [(ngModel)]="sort" (selectionChange)="update()" >
               <mat-option>--</mat-option>
               <mat-option value="category">Category</mat-option>
               <mat-option value="status">Status</mat-option>
@@ -55,7 +55,7 @@
           </mat-form-field>
           <mat-form-field class="input-field">
             <mat-label>Limit</mat-label>
-            <input matInput id="user-age-input" type="number" placeholder="Enter an amount here" min="0" max="200">
+            <input [(ngModel)]="limit" (input)="update()" matInput id="user-age-input" type="number" placeholder="Enter an amount here" min="0" max="200">
             <mat-hint>Limit by number</mat-hint>
           </mat-form-field>
         </div>
@@ -66,9 +66,9 @@
     </mat-card>
   </div>
 </div>
-<div fxFlex fxFlex.gt-sm="80" fxFlexOffset.gt-sm="10">
+<div class="right">
   <div class="todoList">
-    <app-todo-card *ngFor="let todo of todos" [todo]="todo"></app-todo-card>
+    <app-todo-card *ngFor="let todo of filteredTodos" [todo]="todo"></app-todo-card>
   </div>
 </div>
 <div fxLayout="row">
